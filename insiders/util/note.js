@@ -176,7 +176,6 @@ function fullscreen_note(note){
             display.removeChild(but_cancel);
 
             update_note_file(note);
-            current_page.reload();
         },true);
     }
 
