@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <link rel="stylesheet" type="text/css" href="insiders/index.css">
+    <link rel="stylesheet" type="text/css" href="insiders/util/note.css">
+
+    <script src="insiders/util/dialog.js"></script>
+    <script src="insiders/util/anim.js"></script>
+    <script src="insiders/util/note.js"></script>
+    <script src="insiders/util/other.js"></script>
+
+    <script src="insiders/pages/new_note.js"></script>
+    <script src="insiders/pages/all_notes.js"></script>
+    <script src="insiders/pages/settings.js"></script>
+
+    <script src="insiders/index.js"></script>
+
+  </head>
+  <body class='dark-primary-color'>
+    <div class='title-bar'  style="-webkit-app-region: drag"></div>
+      <div class='menu' id='menu'>
+        <div class='title'>NOTES</div>
+        <div class='holder'>
+          <div class='button dark_hover' onclick='button_activator(0)'>
+            <div class='text'>New Note</div>
+            </div>
+          <div class='button dark_hover' onclick='button_activator(1)'>
+            <div class='text'>All Notes</div>
+            </div>    
+          <div class='button dark_hover' onclick='button_activator(3)'>
+            <div class='text'>Settings</div>
+            </div>
+          <div class='button dark_hover' onclick='button_activator(4)'>
+            <div class='text'>Quit</div>
+            </div>
+        </div>
+      </div>
+      <div class='page' id='page'>
+        <div class='title-holder' ><div id='page-title' >TITLE HERE</div></div>
+        <div class='content-holder' id='page-content'></div>
+      </div>
+  </body>
+</html>

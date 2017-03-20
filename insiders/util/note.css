@@ -1,0 +1,263 @@
+div.note{
+    margin : 25px;
+    width: 265px;
+    height: 265px;
+    display:inline-table;
+    background: #C5CAE9;
+    box-shadow: 3px 3px 3px #101010;
+    font-family: titilium-light;
+    padding:2px;
+    position:relative;
+}
+
+div.note>div.title{
+    font-size: 20px;
+    height: 30px;
+    width:100%;
+}
+
+
+div.note>div.content{
+    height:235px;
+    width:100%;
+    word-break: break-all;
+}
+
+div.note>div.lock_overlay{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    z-index: 10;
+    
+    background-image: url("../../icons/lock.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    
+    background-color:rgba(117, 117, 117, 0.4);
+
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+div.note>div.lock_overlay:hover{
+    opacity : 1;
+}
+
+input.title{
+    width:500px;
+    margin-left:-250px;
+    left:50%;
+    top: 100px;
+    position:absolute;
+    background:#303F9F;
+    border-top:0;
+    border-left:0;
+    border-right:0;
+    border-bottom: 2px solid #BDBDBD;
+
+    color : #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    font-family: titilium-light;
+    font-size: 20px;
+}
+
+input.title:focus{
+    outline-width:0;
+    background: #3F51B5;
+}
+
+textarea.content{
+    width:500px;
+    height:350px;
+    margin-left:-250px;
+    left:50%;
+    top: 175px;
+    position:absolute;
+    background:#303F9F;
+    border-top:2px solid #BDBDBD;
+    border-left:0;
+    border-right:0;
+    border-bottom: 2px solid #BDBDBD;
+
+    color : #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    font-family: titilium-light;
+    font-size: 20px;
+
+    resize:none;
+}
+textarea.content:focus{
+    outline-width:0;
+    background: #3F51B5;
+}
+
+.newnotebutton{
+    
+    width: 90px;
+    height: 30px;
+
+    transition: background 0.25s linear;
+    background: #303F9F;
+    border-bottom: 1px solid #BDBDBD;
+    cursor:default;
+
+    color : #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+    font-family: titilium-light;
+    font-size: 20px;
+    user-select:none;
+}
+.newnotebutton:hover{
+    background: #3F51B5;
+}
+
+div.crypto{
+    margin-left: -200px;
+    left:50%;
+    top: 580px;
+    position:absolute;
+
+    width: 400px;
+    height: 80px;
+
+    border-top: 1px solid #BDBDBD;
+    border-bottom: 1px solid #BDBDBD;
+}
+
+div.crypto>.title{
+    width:100%;
+    height:50%;
+    display:inline-block;
+
+    color : #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 35px;
+    font-family: titilium-light;
+    font-size: 25px;
+}
+div.crypto>.select_wrapper{
+    width:100%;
+    height:50%;
+    display:table;
+    table-layout: fixed;
+}
+div.select_wrapper>.select{
+    
+    color : #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    font-family: titilium-light;
+    font-size: 20px;
+    user-select: none;
+
+    cursor: default;
+
+    transition: background 0.25s linear;
+
+    display: table-cell;
+}
+div.select_wrapper>.select:hover{
+    background:#3F51B5;
+}
+
+div.select_wrapper>.select#enc_selected{
+    background: #3F51B5;
+}
+div.crypto>div.key_entry_block{
+    width: 100%;
+    height: 50%;
+    display:none;
+    
+    color : #FFFFFF;
+    vertical-align: middle;
+    line-height: 35px;
+    font-family: titilium-light;
+    font-size: 25px;
+}
+div.key_entry_block>span{
+    width: 20%;
+
+    display:table-cell;
+}
+div.key_entry_block>input.key_entry_input{
+
+    width: 100%;
+    border-top: 0;
+    border-left: 0;
+    border-right : 0;
+    border-bottom: 1px solid white;
+    background : #303F9F;
+    display:table-cell;
+    color : #FFFFFF;
+    vertical-align: middle;
+    font-family: titilium-light;
+    font-size: 15px;
+}
+div.key_entry_block>input.key_entry_input:focus{
+    outline-width:0;
+    background-color: #3F51B5;
+}
+
+div.save{
+    bottom : 40px;
+    right: 70px;
+    position:absolute;
+}
+
+div.reset{
+    bottom : 40px;
+    right: 180px;
+    position:absolute;
+}
+
+div.note_button{
+   
+    width: 24px;
+    height: 24px;
+
+    position:absolute;
+
+    transition: background-color 0.25s linear;
+
+    /*border:1px solid transparent; */
+}
+div.note_button:hover{
+    /*border-top:1px solid white;
+    border-bottom:1px solid white;*/
+
+    background-color: #b5bbe3;
+}
+
+div.note_button_delete{
+    background-image: url("../../icons/delete.png");
+    bottom : 6px;
+    right : 6px;
+}
+div.note_button_edit{
+    background-image: url("../../icons/edit.png");
+    bottom : 6px;
+    right : 36px;
+}
+div.note_button_fullscreen{
+    background-image: url("../../icons/fullscreen.png");
+    top : 4px;
+    right : 4px;
+}
+textarea.fs_edit{
+    background-color: #C5CAE9;
+}
+textarea.fs_edit:focus{
+    outline-width:0;
+    background-color: #b5bbe3;
+}
