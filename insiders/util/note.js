@@ -161,9 +161,7 @@ function fullscreen_note(note){
             note.title = edit_title.value;
 
             ins_title.innerHTML = note.title;
-            ins_content.innerHTML = (()=>{
-                return (note.content.split('<').join('&#60;').split('>').join('&#62;'));
-            })();
+            ins_content.innerHTML = normalize_note_content_nomaxlength(note.content);
 
             
             display.appendChild(ins_title);
