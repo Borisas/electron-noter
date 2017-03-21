@@ -12,7 +12,7 @@ function page_Settings(){
 
         console.log(data);
 
-        this.content.innerHTML = "Version: "+data.version + "<br>" + "NO SETTINGS YET. NONE FULLY NECCESSARY?";
+        this.content.innerHTML = "Version: "+data.version + "<br>" + "No settings yet. Don't really know if any needed.";
 
         this.content.style.color = "#FFFFFF";
         this.content.style.textAlign = "center";
