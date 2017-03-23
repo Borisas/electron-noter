@@ -3,6 +3,7 @@ var path = require('path');
 var dialogs = require('./insiders/util/dialog.js');
 var cryptaes = require('./insiders/util/aes.js');
 var cryptmr = require('./insiders/util/crypt.js');
+var electron = require('electron');
 
 var current_page = null;
 
@@ -30,6 +31,12 @@ var CRYPT = {
 var public_key = "encryption";
 
 function init(){
+    // Create 'notes' directory'
+    var p       = path.join(__dirname,"notes");
+    if(!fs.existsSync(p)){
+        fs.mkdirSync(p);
+    }
+    
     if(current_page === null){
         init_page(PAGES.NEW_NOTE);
     }

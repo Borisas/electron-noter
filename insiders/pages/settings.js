@@ -12,7 +12,7 @@ function page_Settings(){
 
         console.log(data);
 
-        this.content.innerHTML = "Version: "+data.version + "<br>" + "No settings yet. Don't really know if any needed.";
+        this.content.innerHTML = "Version: "+data.version;
 
         this.content.style.color = "#FFFFFF";
         this.content.style.textAlign = "center";
@@ -20,6 +20,18 @@ function page_Settings(){
         this.content.style.lineHeight = "20px";
         this.content.style.fontFamily = "titilium-light";
         this.content.style.fontSize = "20px";
+
+        var devtools_button = document.createElement("div");
+
+        {// init devtools_button
+            devtools_button.className = "settings_devtools_button dark_hover";
+            devtools_button.innerHTML = "Open DevTools";
+            devtools_button.addEventListener('click',()=>{
+			    electron.remote.getCurrentWindow().openDevTools();
+            },true);
+        }
+
+        this.content.appendChild(devtools_button);
     };
 
     this.init();

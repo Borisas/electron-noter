@@ -93,7 +93,19 @@ function fullscreen_note(note){
     var edit_title  = document.createElement("textarea");
     var edit_content= document.createElement("textarea");
 
+    
+    var select_encryption   = document.createElement("div");
+    // Initialised in box encryption init:
+    var keyentry_encryption = document.createElement("div");
+    var key_input_encrypt   = document.createElement("input");
+    var title_encryption    = document.createElement("div");
+
+
+
     var edit_note   = ()=>{
+        
+        select_encryption.style.display = "block";
+
         display.removeChild(ins_title);
         display.removeChild(ins_content);
         display.removeChild(but_edit);
@@ -162,7 +174,13 @@ function fullscreen_note(note){
 
             ins_title.innerHTML = note.title;
             ins_content.innerHTML = normalize_note_content_nomaxlength(note.content);
+            
+            select_encryption.style.display = "none";
 
+            //update note
+            note.key = key_input_encrypt.value;
+            note.enc = select_encryption.dataset.enc;
+            // ---
             
             display.appendChild(ins_title);
             display.appendChild(ins_content);
@@ -188,6 +206,9 @@ function fullscreen_note(note){
 
         but_cancel.addEventListener("click",()=>{
             
+            
+            select_encryption.style.display = "none";
+
             display.appendChild(ins_title);
             display.appendChild(ins_content);
             display.appendChild(but_edit);
@@ -290,7 +311,7 @@ function fullscreen_note(note){
         edit_content.style.resize = "none";
 
         edit_content.style.width = "80%";
-        edit_content.style.height = "75%";
+        edit_content.style.height = "55%";
         edit_content.style.marginLeft = "auto";
         edit_content.style.marginRight = "auto";
         edit_content.style.display = "block";
@@ -310,6 +331,99 @@ function fullscreen_note(note){
         edit_content.style.overflowY = "auto";
     }
 
+    {// box encryption init
+        select_encryption.className = "crypto_fs";
+        select_encryption.style.display = "none";
+
+        var select_0    = document.createElement("div");
+        var select_1    = document.createElement("div");
+        var select_2    = document.createElement("div");
+        var wrapper     = document.createElement("div");
+
+        title_encryption.className = "title";
+        title_encryption.innerHTML = "Encryption";
+        title_encryption.style.color = "black";
+
+        wrapper.className = "select_wrapper_fs";
+
+        select_0.className = "select";
+        select_0.innerHTML = "None";
+        select_0.style.color = "black";
+        select_0.addEventListener("click", ()=>{
+            var c_selected = document.getElementById("enc_selected");
+            if(c_selected != select_0){
+                c_selected.id = "";
+                select_0.id = "enc_selected";
+                select_encryption.dataset.enc = 0;
+
+                keyentry_encryption.style.display = "none";
+                title_encryption.style.display = "block";
+            }
+        },true);
+
+        select_1.className = "select";
+        select_1.innerHTML = "MR";
+        select_1.style.color = "black";
+        select_1.addEventListener("click", ()=>{
+            var c_selected = document.getElementById("enc_selected");
+            if(c_selected != select_1){
+                c_selected.id = "";
+                select_1.id = "enc_selected";
+                select_encryption.dataset.enc = 1;
+
+                keyentry_encryption.style.display = "table";
+                title_encryption.style.display = "none";
+            }
+        },true);
+
+        select_2.className = "select";
+        select_2.innerHTML = "AES";
+        select_2.style.color = "black";
+        select_2.addEventListener("click", ()=>{
+            var c_selected = document.getElementById("enc_selected");
+            if(c_selected != select_2){
+                c_selected.id = "";
+                select_2.id = "enc_selected";
+                select_encryption.dataset.enc = 2;
+
+                keyentry_encryption.style.display = "table";
+                title_encryption.style.display = "none";
+            }
+        },true);
+
+        select_encryption.dataset.enc = 0;
+        
+        keyentry_encryption.className = "key_entry_block_fs";
+
+        var text = document.createElement("span");
+        text.innerHTML = "Key: ";
+        
+        key_input_encrypt.className   = "key_entry_input";
+
+        keyentry_encryption.appendChild(text);
+        keyentry_encryption.appendChild(key_input_encrypt);
+        wrapper.appendChild(select_0);
+        wrapper.appendChild(select_1);
+        wrapper.appendChild(select_2);
+        select_encryption.appendChild(title_encryption);
+        select_encryption.appendChild(wrapper);
+        select_encryption.appendChild(keyentry_encryption);
+
+        if(note.enc == "0") select_0.id = "enc_selected";
+        else{
+            if(note.enc == "1") select_1.id = "enc_selected";
+            else if(note.enc == "2") select_2.id = "enc_selected";
+
+            
+            select_encryption.dataset.enc = note.enc;
+            key_input_encrypt.value = note.key;
+
+            keyentry_encryption.style.display = "table";
+            title_encryption.style.display = "none";
+        }
+    }
+
+    display.appendChild(select_encryption);
     display.appendChild(but_close);
     display.appendChild(but_delete);
     display.appendChild(but_edit);
@@ -377,13 +491,15 @@ function update_note_file(note){
 
         if (note.enc == CRYPT.MR){
             encrypted_content = cryptmr.encrypt(note.content,note.key);
+            encrypted_public_key = cryptmr.encrypt(public_key,note.key);
         }
         else if (note.enc == CRYPT.AES){
             encrypted_content = cryptaes.AES.encrypt(note.content, note.key).toString();
+            encrypted_public_key = cryptaes.AES.encrypt(public_key, note.key).toString();
         }
 
         note_data.content = encrypted_content;
-        note_data.public_key = note.public_key;
+        note_data.public_key = encrypted_public_key;
     }
 
     var save = JSON.stringify(note_data);

@@ -120,3 +120,24 @@ div.button>div.text{
 
     user-select:none;
 }
+
+div.settings_devtools_button{
+    width: 300px;
+    height :24px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top : 16px;
+    display:block;
+
+    background: #303F9F;
+
+    color : white;
+
+    user-select: none;
+    cursor:default;
+
+    border-bottom: 1px solid white;
+}
+div.settings_devtools_button:hover{
+    background:#3F51B5;
+}
