@@ -409,7 +409,10 @@ function fullscreen_note(note){
         select_encryption.appendChild(wrapper);
         select_encryption.appendChild(keyentry_encryption);
 
-        if(note.enc == "0") select_0.id = "enc_selected";
+        if(note.enc == "0" || note.enc === null){ 
+            select_0.id = "enc_selected";
+            key_input_encrypt.value = "";
+        }
         else{
             if(note.enc == "1") select_1.id = "enc_selected";
             else if(note.enc == "2") select_2.id = "enc_selected";
